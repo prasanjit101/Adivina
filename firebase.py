@@ -51,8 +51,13 @@ def method_name():
     if request.method == 'POST':
         join = request.form['join']
         name = request.form['name']
-        db.child('rooms').child(join).update({'name': name})
-        return render_template('index.html', c=join)
+        rooms_av=db.child('rooms').child(join).shallow.get().val()
+        if rooms in rooms_av:
+            db.child('rooms').child(join).update({'name': name})
+            dval=name
+        else:
+            dval="No room found"
+        return render_template('index.html', d=dval)
     return render_template('index.html')
 
 if __name__ == '__main__': 
