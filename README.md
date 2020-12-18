@@ -2,8 +2,8 @@
 A quiz oriented progamme based on python
 
 ## It depends primarily on:
-flask<br>
-firebase
+Flask<br>
+Firebase
 
 ## Author:
 <b>Kartik Papney<b>
