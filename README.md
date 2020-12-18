@@ -2,9 +2,10 @@
 A quiz oriented progamme based on python
 
 ## It depends primarily on:
-flask
+flask<br>
 firebase
 
 ## Author:
-Kartik Papney
-Prasanjit Dutta
+<b>Kartik Papney<b>
+<br>
+<b>Prasanjit Dutta<b>
