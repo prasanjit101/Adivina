@@ -1,5 +1,6 @@
 from Pyrebase import pyrebase
 from flask import *
+from functions import code
 
 config = {
 
@@ -21,18 +22,28 @@ questions = {
     "7":"If you have a coconut and %s with you. What will you do?","8":"What song you want to dance %s on","9":"Going good! And what song will you dance with %s on btw",
     "10":"Okay..., now Which song you always wanted %s to sing?","11":"What according to you satisfies %s the most ?"
 }
+
 firebase = pyrebase.initialize_app(config)
 db = firebase.database()
 
 db.child("questions").set(questions)
 
 app = Flask(__name__)
-@app.route('/', methods=['GET', 'POST'])
-def basic():
+@app.route('/get', methods=['GET', 'POST'])
+def get_questions():
     if request.method == 'GET':
         questions = db.child("questions").get()
         print(questions.val())
         return render_template('index.html', t=questions.val())
+    return render_template('index.html')
+
+@app.route('/generate', methods=['GET', 'POST'])
+def generate_code():
+    if request.method == 'POST':
+        join_code = code()
+        room = request.form['room']
+        db.child('rooms').child(join_code).set({'room': room})
+        return render_template('index.html', c=join_code)
     return render_template('index.html')
 
 if __name__ == '__main__': 
