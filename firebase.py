@@ -46,6 +46,14 @@ def generate_code():
         return render_template('index.html', c=join_code)
     return render_template('index.html')
 
+@app.route('/join', methods=['POST'])
+def method_name():
+    if request.method == 'POST':
+        join = request.form['join']
+        name = request.form['name']
+        db.child('rooms').child(join).update({'name': name})
+        return render_template('index.html', c=join)
+    return render_template('index.html')
 
 if __name__ == '__main__': 
     app.run(debug=True)
