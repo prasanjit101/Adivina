@@ -51,8 +51,8 @@ def method_name():
     if request.method == 'POST':
         join = request.form['join']
         name = request.form['name']
-        rooms_av=db.child('rooms').child(join).shallow.get().val()
-        if rooms in rooms_av:
+        rooms_av=db.child('rooms').shallow.get().val()
+        if join in rooms_av:
             db.child('rooms').child(join).update({'name': name})
             dval=name
         else:
