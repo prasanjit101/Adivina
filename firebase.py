@@ -51,7 +51,10 @@ def method_name():
     if request.method == 'POST':
         join = request.form['join']
         name = request.form['name']
-        db.child('rooms').child(join).update({'name': name})
+        val = db.child('rooms').get().val()
+        for i in val:
+            if i == join:
+                db.child('rooms').child(join).update({name: 'present'})
         return render_template('index.html', c=join)
     return render_template('index.html')
 
