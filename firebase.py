@@ -46,5 +46,6 @@ def generate_code():
         return render_template('index.html', c=join_code)
     return render_template('index.html')
 
+
 if __name__ == '__main__': 
     app.run(debug=True)
