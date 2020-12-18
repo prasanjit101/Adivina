@@ -32,7 +32,7 @@ def basic():
     if request.method == 'GET':
         questions = db.child("questions").get()
         print(questions.val())
-        return render_template('index.html', to=questions.val())
+        return render_template('index.html', t=questions.val())
     return render_template('index.html')
 
 if __name__ == '__main__': 
