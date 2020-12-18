@@ -1,10 +1,10 @@
-# adivina
-A quiz oriented progamme based on python
+# Adivina
+## A quiz oriented progamme based on python
 
-it depends primarily on:
-flask
-firebase
+# It depends primarily on:
+## flask
+## firebase
 
-author:
-Kartik Papney
-Prasanjit Dutta
+# Author:
+## Kartik Papney
+## Prasanjit Dutta
