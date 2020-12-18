@@ -31,8 +31,9 @@ app = Flask(__name__)
 def basic():
     if request.method == 'GET':
         questions = db.child("questions").get()
-        return questions.val()
-    return -1
+        print(questions.val())
+        return render_template('index.html', to=questions.val())
+    return render_template('index.html')
 
-if __name__ == '__main__':
+if __name__ == '__main__': 
     app.run(debug=True)
