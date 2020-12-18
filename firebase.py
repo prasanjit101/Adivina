@@ -1,4 +1,5 @@
 from Pyrebase import pyrebase
+from flask import *
 
 config = {
 
@@ -24,3 +25,14 @@ firebase = pyrebase.initialize_app(config)
 db = firebase.database()
 
 db.child("questions").set(questions)
+
+app = Flask(__name__)
+@app.route('/', methods=['GET', 'POST'])
+def basic():
+    if request.method == 'GET':
+        questions = db.child("questions").get()
+        return questions.val()
+    return -1
+
+if __name__ == '__main__':
+    app.run(debug=True)
