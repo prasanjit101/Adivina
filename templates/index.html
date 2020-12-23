@@ -5,24 +5,33 @@
     <title>Adivina</title>
   </head>
   <body>
+
     <form action='/' method="get">
-        <button>Submit</button>
+        <button>Home</button>
     </form>
+
+    <form action='/rooms/get' method="get">
+        <button>Get Rooms</button>
+    </form>
+
     <br>
+    
     <form action='/generate' method="post">
         <input type="text" name="room"></input>
         <button>Submit</button>
     </form>
+
     <br>
+
     <form action='/join' method="post">
       <p>join code :</p>
       <input id="" type="text" name="join"></input>
       <p>Name :</p>
       <input id="" type="text" name="name"></input>
       <button>Submit</button>
-  </form>
+    </form>
+
     <h1>{{t}}</h1>
-    <h1>{{c}}</h1>
-    <h1>{{d}}</h1>
+
   </body>
 </html>

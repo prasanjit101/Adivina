@@ -1,6 +1,8 @@
 from Pyrebase import pyrebase
 from flask import *
-from functions import code
+from functions import code, timerFunction
+import random
+import requests
 
 config = {
 
@@ -29,13 +31,18 @@ db = firebase.database()
 db.child("questions").set(questions)
 
 app = Flask(__name__)
+
+@app.route('/', methods=['GET'])
+def home():
+        return render_template('index.html', t="Done")
+
 @app.route('/get', methods=['GET', 'POST'])
 def get_questions():
     if request.method == 'GET':
         questions = db.child("questions").get()
-        print(questions.val())
         return render_template('index.html', t=questions.val())
     return render_template('index.html')
+
 
 @app.route('/generate', methods=['GET', 'POST'])
 def generate_code():
@@ -43,20 +50,34 @@ def generate_code():
         join_code = code()
         room = request.form['room']
         db.child('rooms').child(join_code).set({'room': room})
-        return render_template('index.html', c=join_code)
+        return render_template('index.html', t=join_code)
     return render_template('index.html')
+
 
 @app.route('/join', methods=['POST'])
 def method_name():
     if request.method == 'POST':
         join = request.form['join']
         name = request.form['name']
-        val = db.child('rooms').get().val()
+        val = db.child('rooms').shallow().get().val()
         for i in val:
             if i == join:
                 db.child('rooms').child(join).update({name: 'present'})
-        return render_template('index.html', c=join)
+        return render_template('index.html', t=join)
     return render_template('index.html')
+
+@app.route('/rooms/get', methods=['GET'])
+def get_rooms():
+    if request.method == 'GET':
+        val = db.child('rooms').get().val()
+        return render_template('index.html', t=val)
+    return render_template('index.html')
+
+@app.route('/play', methods=['POST'])
+def play_game():
+    if request.method == 'POST':
+        return render_template('index.html', t="Entered")
+        
 
 if __name__ == '__main__': 
     app.run(debug=True)
