@@ -34,7 +34,11 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def home():
-        return render_template('index.html', t="Done")
+    x = 5
+    while(True):
+        val = timerFunction(x)
+        return render_template('index.html', t=x)
+    
 
 @app.route('/get', methods=['GET', 'POST'])
 def get_questions():
@@ -42,7 +46,6 @@ def get_questions():
         questions = db.child("questions").get()
         return render_template('index.html', t=questions.val())
     return render_template('index.html')
-
 
 @app.route('/generate', methods=['GET', 'POST'])
 def generate_code():
@@ -52,7 +55,6 @@ def generate_code():
         db.child('rooms').child(join_code).set({'room': room})
         return render_template('index.html', t=join_code)
     return render_template('index.html')
-
 
 @app.route('/join', methods=['POST'])
 def method_name():
