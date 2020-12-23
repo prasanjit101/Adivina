@@ -28,16 +28,15 @@ questions = {
 firebase = pyrebase.initialize_app(config)
 db = firebase.database()
 
-db.child("questions").set(questions)
-
 app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def home():
     x = 5
-    while(True):
-        val = timerFunction(x)
-        return render_template('index.html', t=x)
+    val = timerFunction(x)
+    db.child("questions").set(questions)
+    return render_template('index.html', t=x)
+        
     
 
 @app.route('/get', methods=['GET', 'POST'])
