@@ -1,6 +1,6 @@
 from Pyrebase import pyrebase
 from flask import *
-from functions import code, timerFunction
+from functions import code, timerFunction, test_strings
 import random
 import requests
 
@@ -35,7 +35,7 @@ def home():
     # x = 5
     # val = timerFunction(x)
     # db.child("questions").set(questions)
-    return render_template('index.html', t="Done")
+    return render_template('index.html', t="Welcome to Adivina")
 
 
 @app.route('/get', methods=['GET', 'POST'])
@@ -52,6 +52,8 @@ def generate_code():
         join_code = code()
         room = request.form['room']
         admin = request.form['admin']
+        if test_strings(room, admin):
+            return render_template('index.html', t="Empty Strings")
         db.child('rooms').child(join_code).set({'room': room, 'admin': admin})
         return render_template('index.html', t=join_code)
     return render_template('index.html')
@@ -62,6 +64,8 @@ def method_name():
     if request.method == 'POST':
         join = request.form['join']
         name = request.form['name']
+        if test_strings(join, name):
+            return render_template('index.html', t="Empty Strings")
         val = db.child('rooms').shallow().get().val()
         for i in val:
             if i == join:
@@ -69,24 +73,41 @@ def method_name():
         return render_template('index.html', t=join)
     return render_template('index.html')
 
+
 @app.route('/question/add', methods=['POST'])
 def add_question():
     if request.method == 'POST':
         room = request.form['room']
         admin = request.form['admin']
         question = request.form['question']
-        val = db.child('rooms').child(room).child('questions').shallow().get().val()
-        print(val)
-        db.child('rooms').child(room).child('questions').child(val.size()).set({question: True})
-        return render_template('index.html', t=val)
+        if test_strings(room, admin, question):
+            return render_template('index.html', t="Empty Strings")
+        val = 0
+        if db.child('rooms').child(room).child('questions').shallow().get().val() != None:
+            val = len(db.child('rooms').child(room).child('questions').shallow().get().val())
+        db.child('rooms').child(room).child('questions').child(val).set({question: True})
+        return render_template('index.html', t="Done")
+
+@app.route('/question/get', methods=['POST'])
+def get_question():
+    if request.method == 'POST':
+        room = request.form['room']
+        index = request.form['index']
+        if test_strings(room, index):
+            return render_template('index.html', t="Empty Strings")
+        return render_template('index.html', t=db.child('rooms').child(room).child('questions').child(index).get().val())
 
 @app.route('/question/answer', methods=['POST'])
 def ans_question():
     if request.method == 'POST':
         room = request.form['room']
         name = request.form['name']
+        index = request.form['index']
         answer = request.form['answer']
-        db.child('rooms').child(room).child('answers').set({name: answer})
+        if test_strings(room, name, index, answer):
+            return render_template('index.html', t="Empty Strings")
+
+        db.child('rooms').child(room).child('questions').child(index).child('answers').child(name).set({'answer': answer})
         return render_template('index.html', t=answer)
 
 
