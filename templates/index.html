@@ -4,54 +4,33 @@
   <head>
     <meta charset="UTF-8">
     <title>Adivina</title>
+    <link rel="stylesheet" href="index.css">
   </head>
 
   <body>
+    <nav class="navbar">
+      <form action='/' method="get">
+        <button>Home</button>
+      </form>
+      <form class="room" action='/generate' method="post">
+        <input type="text" name="room"></input>
+        <button>Submit</button>
+      </form>
+    </nav>
+    <br>
+    
+    
 
-  <form action='/' method="get">
-      <button>Home</button>
-  </form>
+    <br>
 
-  <form action='/rooms/get' method="get">
-      <button>Get Rooms</button>
-  </form>
+    <form action='/join' method="post">
+      <p>join code :</p>
+      <input id="" type="text" name="join"></input>
+      <p>Name :</p>
+      <input id="" type="text" name="name"></input>
+      <button>Submit</button>
+    </form>
 
-  <br>
-
-  <form action='/generate' method="post">
-      <input type="text" name="room"></input>
-      <input type="text" name="admin"></input>
-      <button>Create Room</button>
-  </form>
-
-  <br>
-
-  <form action='/join' method="post">
-    <p>join code :</p>
-    <input id="" type="text" name="join"></input>
-    <p>Name :</p>
-    <input id="" type="text" name="name"></input>
-    <button>Submit</button>
-  </form>
-
-
-  <p>Add Question<p>
-  <form action='/question/add' method="post">
-    <input type="text" name="room"></input>
-    <input type="text" name="admin"></input>
-    <input type="text" name="question"></input>
-    <button>Create Room</button>
-  </form>
-
-  <p>Answer Question<p>
-  <form action='/question/answer' method="post">
-    <input type="text" name="room"></input>
-    <input type="text" name="name"></input>
-    <input type="text" name="answer"></input>
-    <button>Create Room</button>
-  </form>
-
-  <h1>{{t}}</h1>
-
+    <script src="scripts.js"></script>
   </body>
 </html>
