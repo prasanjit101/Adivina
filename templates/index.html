@@ -1,37 +1,57 @@
 <!DOCTYPE html>
+
 <html>
   <head>
     <meta charset="UTF-8">
     <title>Adivina</title>
   </head>
+
   <body>
 
-    <form action='/' method="get">
-        <button>Home</button>
-    </form>
+  <form action='/' method="get">
+      <button>Home</button>
+  </form>
 
-    <form action='/rooms/get' method="get">
-        <button>Get Rooms</button>
-    </form>
+  <form action='/rooms/get' method="get">
+      <button>Get Rooms</button>
+  </form>
 
-    <br>
-    
-    <form action='/generate' method="post">
-        <input type="text" name="room"></input>
-        <button>Submit</button>
-    </form>
+  <br>
 
-    <br>
+  <form action='/generate' method="post">
+      <input type="text" name="room"></input>
+      <input type="text" name="admin"></input>
+      <button>Create Room</button>
+  </form>
 
-    <form action='/join' method="post">
-      <p>join code :</p>
-      <input id="" type="text" name="join"></input>
-      <p>Name :</p>
-      <input id="" type="text" name="name"></input>
-      <button>Submit</button>
-    </form>
+  <br>
 
-    <h1>{{t}}</h1>
+  <form action='/join' method="post">
+    <p>join code :</p>
+    <input id="" type="text" name="join"></input>
+    <p>Name :</p>
+    <input id="" type="text" name="name"></input>
+    <button>Submit</button>
+  </form>
+
+
+  <p>Add Question<p>
+  <form action='/question/add' method="post">
+    <input type="text" name="room"></input>
+    <input type="text" name="admin"></input>
+    <input type="text" name="question"></input>
+    <button>Create Room</button>
+  </form>
+
+  <p>Answer Question<p>
+  <form action='/question/answer' method="post">
+    <input type="text" name="room"></input>
+    <input type="text" name="name"></input>
+    <input type="text" name="answer"></input>
+    <button>Create Room</button>
+  </form>
+
+  <h1>{{t}}</h1>
 
   </body>
 </html>

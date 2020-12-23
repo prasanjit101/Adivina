@@ -32,12 +32,11 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def home():
-    x = 5
-    val = timerFunction(x)
-    db.child("questions").set(questions)
-    return render_template('index.html', t=x)
-        
-    
+    # x = 5
+    # val = timerFunction(x)
+    # db.child("questions").set(questions)
+    return render_template('index.html', t="Done")
+
 
 @app.route('/get', methods=['GET', 'POST'])
 def get_questions():
@@ -45,15 +44,18 @@ def get_questions():
         questions = db.child("questions").get()
         return render_template('index.html', t=questions.val())
     return render_template('index.html')
+    
 
 @app.route('/generate', methods=['GET', 'POST'])
 def generate_code():
     if request.method == 'POST':
         join_code = code()
         room = request.form['room']
-        db.child('rooms').child(join_code).set({'room': room})
+        admin = request.form['admin']
+        db.child('rooms').child(join_code).set({'room': room, 'admin': admin})
         return render_template('index.html', t=join_code)
     return render_template('index.html')
+
 
 @app.route('/join', methods=['POST'])
 def method_name():
@@ -63,9 +65,30 @@ def method_name():
         val = db.child('rooms').shallow().get().val()
         for i in val:
             if i == join:
-                db.child('rooms').child(join).update({name: 'present'})
+                db.child('rooms').child(join).child('students').set({name: True})
         return render_template('index.html', t=join)
     return render_template('index.html')
+
+@app.route('/question/add', methods=['POST'])
+def add_question():
+    if request.method == 'POST':
+        room = request.form['room']
+        admin = request.form['admin']
+        question = request.form['question']
+        val = db.child('rooms').child(room).child('questions').shallow().get().val()
+        print(val)
+        db.child('rooms').child(room).child('questions').child(val.size()).set({question: True})
+        return render_template('index.html', t=val)
+
+@app.route('/question/answer', methods=['POST'])
+def ans_question():
+    if request.method == 'POST':
+        room = request.form['room']
+        name = request.form['name']
+        answer = request.form['answer']
+        db.child('rooms').child(room).child('answers').set({name: answer})
+        return render_template('index.html', t=answer)
+
 
 @app.route('/rooms/get', methods=['GET'])
 def get_rooms():
@@ -74,8 +97,9 @@ def get_rooms():
         return render_template('index.html', t=val)
     return render_template('index.html')
 
-@app.route('/play', methods=['POST'])
-def play_game():
+
+@app.route('/start', methods=['POST'])
+def start_viva():
     if request.method == 'POST':
         return render_template('index.html', t="Entered")
         
