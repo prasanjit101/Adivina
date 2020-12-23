@@ -88,6 +88,7 @@ def add_question():
         db.child('rooms').child(room).child('questions').child(val).set({question: True})
         return render_template('index.html', t="Done")
 
+
 @app.route('/question/get', methods=['POST'])
 def get_question():
     if request.method == 'POST':
