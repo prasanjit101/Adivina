@@ -44,7 +44,7 @@ def get_questions():
         questions = db.child("questions").get()
         return render_template('index.html', t=questions.val())
     return render_template('index.html')
-    
+ 
 
 @app.route('/generate', methods=['GET', 'POST'])
 def generate_code():
@@ -69,7 +69,10 @@ def method_name():
         val = db.child('rooms').shallow().get().val()
         for i in val:
             if i == join:
-                db.child('rooms').child(join).child('students').set({name: True})
+                length = 0
+                if db.child('rooms').child(join).child('students').shallow().get().val() != None:
+                    length = len(db.child('rooms').child(join).child('students').shallow().get().val())
+                db.child('rooms').child(join).child('students').child(length).set({length: name})
         return render_template('index.html', t=join)
     return render_template('index.html')
 
@@ -80,12 +83,13 @@ def add_question():
         room = request.form['room']
         admin = request.form['admin']
         question = request.form['question']
-        if test_strings(room, admin, question):
+        time = request.form['time']
+        if test_strings(room, admin, question, time):
             return render_template('index.html', t="Empty Strings")
         val = 0
         if db.child('rooms').child(room).child('questions').shallow().get().val() != None:
             val = len(db.child('rooms').child(room).child('questions').shallow().get().val())
-        db.child('rooms').child(room).child('questions').child(val).set({question: True})
+        db.child('rooms').child(room).child('questions').child(val).set({'question': question, 'time': time})
         return render_template('index.html', t="Done")
 
 
@@ -93,10 +97,17 @@ def add_question():
 def get_question():
     if request.method == 'POST':
         room = request.form['room']
-        index = request.form['index']
-        if test_strings(room, index):
+        if test_strings(room):
             return render_template('index.html', t="Empty Strings")
-        return render_template('index.html', t=db.child('rooms').child(room).child('questions').child(index).get().val())
+        val = 0
+        if db.child('rooms').child(room).child('questions').shallow().get().val() != None:
+            val = len(db.child('rooms').child(room).child('questions').shallow().get().val())
+        if(val == 0):
+            return render_template('index.html', t="No Question")
+        que = "No Question"
+        
+        return render_template('index.html', t=db.child('rooms').child(room).child('questions').child(val - 1).get().val())
+
 
 @app.route('/question/answer', methods=['POST'])
 def ans_question():
