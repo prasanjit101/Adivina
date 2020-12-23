@@ -17,3 +17,11 @@ def timerFunction(seconds):
         time.sleep(1)
         if seconds == 0:
             return True
+
+
+def test_strings(*argv):
+    for arg in argv:
+        print(argv)
+        if arg == '':
+            return True
+    return False
