@@ -30,9 +30,17 @@ def assign_code(file):
     file1 = open(file ,"r+")
     #if names is the list of student names
     roll=file1.readlines()
-    file1.close()
+    file1.close(roll)
     file2 = open("Roll_number.txt","w+")
     for i in roll:
         a=i[:-1]
         file2.write(a+": "+code()+"\n")
     return file2
+
+def student_dict(roll):
+    diction={}
+    for i in string:
+        temp=i[:-1]
+        i=temp.split(": ")
+        diction[i[1]]=i[0]
+    return diction

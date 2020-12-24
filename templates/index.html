@@ -9,7 +9,7 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   </head>
-  <body style="position: relative; color: rgb(240, 240, 240); background-color: rgb(247, 248, 247);">
+  <body class="container-fluid mt-5" style=" color: rgb(0, 0, 0); background-color: rgb(247, 248, 247);">
     <div class="row d-flex">
       <div class="col-md-6">
         <form action="/" method="get">
@@ -19,24 +19,25 @@
         <form action="/generate" method="post">
           <input placeholder="" type="text" name="room" style="padding: 4px 5px;">
           <input placeholder="" type="text" name="admin" style="padding: 4px 5px;">
-          <button style="padding: 4px 9px; background-color: rgb(61, 67, 66);">Create Room</button>
+          <button style="color:#fff;padding: 4px 9px; background-color: rgb(61, 67, 66);">Create Room</button>
       </form>
     <br>
     <p style="color: black; ">Enter :</p>
     <form action="/join" method="post" style="">
-      <input id="" placeholder="Enter join code" type="text" name="join" style="width:9cm; padding: 6px 7px;">
-      <input id="" placeholder="Enter your name" type="text" name="name" style="width: 9cm;  padding: 6px 7px;">
-      <button style=" padding: 4px 36px 4px 32px; border-color: rgb(250, 245, 245); color: rgb(235, 234, 234); background-color: rgb(46, 51, 50);">Join</button>
+      <input id="" placeholder="Enter join code" type="text" name="join" style="width:10cm; padding: 6px 7px;">
+      <input id="" placeholder="Enter your name" type="text" name="name" style="width: 10cm;  padding: 6px 7px;">
+      <button class="mt-4" style=" padding: 4px 36px 4px 32px; border-color: rgb(250, 245, 245); color: rgb(235, 234, 234); background-color: rgb(46, 51, 50);">Join</button>
     </form>
 
-    <form action="/codes" method="post" enctype="multipart/form-data" style="position: relative; left: 0px; top: 49px;">
-      <input type="file" name="myfile">
+    <form action="/codes" method="post" enctype="multipart/form-data" style=" left: 0px; top: 49px;">
+      <input style="margin-bottom: 1rem;"margin-top: 1rem; type="file" name="myfile">
       <input type="submit" name="submit">
     </form>
   
       </div>
-      <form action="" method="">1
-        <input type="file" placeholder="upload the file to get the code" name="file" id=""><button style="padding: 4px 9px; background-color: rgb(61, 67, 66);">upload</button>
+      <h5>Get students code :</h5>
+      <form action="" method="">
+        <input type="file" placeholder="upload the file to get the code" name="file" id=""><button style="color:#fff;padding: 4px 9px; background-color: rgb(61, 67, 66);">upload</button>
       </form>
     </div>
     <br>
