@@ -1,9 +1,8 @@
 from Pyrebase import pyrebase
 from flask import *
-from functions import code, timerFunction, test_strings
+from functions import code, timerFunction, test_strings, assign_code
 import random
-import requests
-
+import os
 config = {
 
     "apiKey": "AIzaSyAAtBuPe4aVoa_vm2bV9WVcfI7Pa4SakR0",
@@ -27,8 +26,8 @@ questions = {
 
 firebase = pyrebase.initialize_app(config)
 db = firebase.database()
-
 app = Flask(__name__)
+
 
 @app.route('/', methods=['GET'])
 def home():
@@ -36,6 +35,13 @@ def home():
     # val = timerFunction(x)
     # db.child("questions").set(questions)
     return render_template('index.html', t="Welcome to Adivina")
+
+@app.route('/codes', methods=['GET', 'POST'])
+def generate_codes():
+    if request.method == 'POST':
+        result = request.files['myfile']
+        val = assign_code(result)
+        return send_file(val, as_attachment=True)
 
 
 @app.route('/get', methods=['GET', 'POST'])
@@ -77,6 +83,7 @@ def method_name():
     return render_template('index.html')
 
 
+
 @app.route('/question/add', methods=['POST'])
 def add_question():
     if request.method == 'POST':
@@ -91,6 +98,7 @@ def add_question():
             val = len(db.child('rooms').child(room).child('questions').shallow().get().val())
         db.child('rooms').child(room).child('questions').child(val).set({'question': question, 'time': time})
         return render_template('index.html', t="Done")
+
 
 
 @app.route('/question/get', methods=['POST'])
