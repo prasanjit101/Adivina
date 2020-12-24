@@ -25,3 +25,12 @@ def test_strings(*argv):
         if arg == '':
             return True
     return False
+
+def assign_code():
+    file = open(r"data.txt","a+")
+    #if names is the list of student names
+    for i in names:
+        file.write(i+"-"+str(code()))
+
+def get_students_code():
+    file=open(r"data.txt","")
