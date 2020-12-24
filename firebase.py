@@ -3,6 +3,9 @@ from flask import *
 from functions import code, timerFunction, test_strings, assign_code
 import random
 import os
+from werkzeug import secure_filename
+
+
 config = {
 
     "apiKey": "AIzaSyAAtBuPe4aVoa_vm2bV9WVcfI7Pa4SakR0",
@@ -39,9 +42,12 @@ def home():
 @app.route('/codes', methods=['GET', 'POST'])
 def generate_codes():
     if request.method == 'POST':
-        result = request.files['myfile']
-        val = assign_code(result)
-        return send_file(val, as_attachment=True)
+        file = request.files['myfile']
+        if file:
+            filename = secure_filename(file.filename)
+            # file.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
+            return file
+        return render_template('index.html')
 
 
 @app.route('/get', methods=['GET', 'POST'])
