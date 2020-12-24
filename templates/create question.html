@@ -4,14 +4,18 @@
   <head>
     <meta charset="UTF-8">
     <title>Adivina</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="create.css">
   </head>
   <body>
-    <p>Add Question</p>
-    <form action="/question/add" method="post">
-        <input type="text" name="room" >
-        <input type="text" name="admin">
-        <input type="text" name="question">
-        <button>Add Question</button>
-      </form>
-    </body>
+    <main>
+      <header><p>Add Question</p></header>
+      <article>
+        <form action="/question/add" method="post">
+          <input type="text" name="room" >
+          <input type="text" name="admin">
+          <input type="text" name="question">
+          <button>Add Question</button>
+        </form>
+      </article>
+    </main>  
+  </body>
