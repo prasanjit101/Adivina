@@ -11,22 +11,22 @@
   </head>
   <body style="position: relative; color: rgb(240, 240, 240); background-color: rgb(247, 248, 247);">
     <div class="row d-flex">
-      <div class="col-md-6" style="left: 29px; top: -1px;">
-        <form action="/" method="get" style="position: relative; left: 66px; top: 49px;">
-          <button style="padding: 5px 26px 6px; border-color: rgb(252, 252, 252); background-color: rgb(53, 59, 58); color: rgb(255, 255, 255); position: relative; left: 0px; top: -1px;">Home</button>
+      <div class="col-md-6">
+        <form action="/" method="get">
+          <button style="padding: 5px 26px 6px; border-color: rgb(252, 252, 252); background-color: rgb(53, 59, 58); color: rgb(255, 255, 255); ">Home</button>
         </form>
         
-        <form action="/generate" method="post" style="position: relative; left: 815px; top: 23px;">
+        <form action="/generate" method="post">
           <input placeholder="" type="text" name="room" style="padding: 4px 5px;">
           <input placeholder="" type="text" name="admin" style="padding: 4px 5px;">
           <button style="padding: 4px 9px; background-color: rgb(61, 67, 66);">Create Room</button>
       </form>
     <br>
-    <p style="color: black; position: relative; left: 381px; top: 124px;">Enter :</p>
-    <form action="/join" method="post" style="position: relative; left: 0px; top: 49px;">
-      <input id="" placeholder="Enter join code" type="text" name="join" style="width:9cm;position: relative; left: 381px; top: 106px; padding: 6px 7px;">
-      <input id="" placeholder="Enter your name" type="text" name="name" style="width: 9cm; position: relative; left: 380px; top: 115px; padding: 6px 7px;">
-      <button style="position: relative; left: 35px; top: 176px; padding: 4px 36px 4px 32px; border-color: rgb(250, 245, 245); color: rgb(235, 234, 234); background-color: rgb(46, 51, 50);">Join</button>
+    <p style="color: black; ">Enter :</p>
+    <form action="/join" method="post" style="">
+      <input id="" placeholder="Enter join code" type="text" name="join" style="width:9cm; padding: 6px 7px;">
+      <input id="" placeholder="Enter your name" type="text" name="name" style="width: 9cm;  padding: 6px 7px;">
+      <button style=" padding: 4px 36px 4px 32px; border-color: rgb(250, 245, 245); color: rgb(235, 234, 234); background-color: rgb(46, 51, 50);">Join</button>
     </form>
 
     <form action="/codes" method="post" style="position: relative; left: 0px; top: 49px;">
@@ -35,7 +35,9 @@
     </form>
   
       </div>
-      
+      <form action="" method="">
+        <input type="file" placeholder="upload the file to get the code" name="file" id=""><button style="padding: 4px 9px; background-color: rgb(61, 67, 66);">upload</button>
+      </form>
     </div>
     <br>
 

@@ -33,4 +33,4 @@ def assign_code():
     roll=file1.readlines()
     for i in roll:
         a=i[:-1]
-        file2.write(a+"-"+code()+"\n")
+        file2.write(a+": "+code()+"\n")
