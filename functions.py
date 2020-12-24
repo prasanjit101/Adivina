@@ -27,10 +27,10 @@ def test_strings(*argv):
     return False
 
 def assign_code():
-    file = open(r"data.txt","a+")
+    file1 = open(r"Roll_number.txt","r")
+    file2 = open(r"assigned_codes.txt","w+")
     #if names is the list of student names
-    for i in names:
-        file.write(i+"-"+str(code()))
-
-def get_students_code():
-    file=open(r"data.txt","")
+    roll=file1.readlines()
+    for i in roll:
+        a=i[:-1]
+        file2.write(a+"-"+code()+"\n")
