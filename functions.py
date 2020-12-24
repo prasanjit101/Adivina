@@ -26,7 +26,7 @@ def test_strings(*argv):
             return True
     return False
 
-def assign_code():
+def assign_code(file):
     file1 = open(r"Roll_number.txt","r")
     file2 = open(r"assigned_codes.txt","w+")
     #if names is the list of student names

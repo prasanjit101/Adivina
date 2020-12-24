@@ -3,7 +3,7 @@ from flask import *
 from functions import code, timerFunction, test_strings, assign_code
 import random
 import os
-from werkzeug import secure_filename
+from werkzeug.utils import secure_filename
 
 
 config = {
@@ -43,11 +43,8 @@ def home():
 def generate_codes():
     if request.method == 'POST':
         file = request.files['myfile']
-        if file:
-            filename = secure_filename(file.filename)
-            # file.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
-            return file
-        return render_template('index.html')
+        val = assign_code(file)
+        return send_file(val, as_attachment=True, attachment_filename="file.txt")
 
 
 @app.route('/get', methods=['GET', 'POST'])
