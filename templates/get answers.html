@@ -6,28 +6,25 @@
     <title>Adivina</title>
     <link rel="stylesheet" href="answer.css">
   </head>
-  <body>  <p>Get Question<p>
-    <form action='/question/get' method="post">
-      <input type="text" name="room"></input>
-      <input type="text" name="index"></input>
-      <button>Get Question</button>
-    </form>
-
-    
-    <p>Answer Question<p>
-        <form action='/question/answer' method="post">
+  <body>
+    <main>
+    <aside>
+      <p>Get Question<p>
+        <form action='/question/get' method="post">
+          <input type="text" name="room"></input>
+          <input type="text" name="index"></input>
+          <button>Get Question</button>
+        </form>
+    </aside>
+    <article>
+      <p>Answer Question<p>
+        <form id="answer" action='/question/answer' method="post">
           <input type="text" name="room"></input>
           <input type="text" name="name"></input>
           <input type="text" name="index"></input>
           <input type="text" name="answer"></input>
           <button>Answer Question</button>
         </form>
-        
-  <p>Add Question<p>
-    <form action='/question/add' method="post">
-      <input type="text" name="room"></input>
-      <input type="text" name="admin"></input>
-      <input type="text" name="question"></input>
-      <button>Add Question</button>
-    </form>
+    </article>
+  </main>
   </body>

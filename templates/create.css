@@ -1,9 +1,17 @@
+html{color: rgb(48, 43, 43);}
 main{
     display: grid;
-}
-header{
-    
-}
-article{
+    grid-template-areas: 
+    "topbar topbar  topbar"
+    "ads    content sidebar"
+    "footer footer  footer";
 
+    grid-template-columns: 1fr 3fr 1fr;
+    /* for making the columns 1 fraction ,3fractions and 1 fractions of the total width respectively */
+    grid-template-rows: 50px auto 70px;
 }
+header  { grid-area: topbar;}
+aside { grid-area: ads;}
+article { grid-area: content;}
+nav { grid-area: sidebar;}
+footer { grid-area: footer;}
