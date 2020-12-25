@@ -1,8 +1,8 @@
-html{color: rgb(48, 43, 43);}
+html{color: rgb(48, 43, 43);height: 100vh;}
 main{
     display: grid;
     grid-template-areas: 
-    "topbar topbar  topbar"
+    "topbar topbar1  topbar1"
     "ads    content sidebar"
     "footer footer  footer";
 
@@ -10,8 +10,17 @@ main{
     /* for making the columns 1 fraction ,3fractions and 1 fractions of the total width respectively */
     grid-template-rows: 50px auto 70px;
 }
-header  { grid-area: topbar;}
+header  { grid-area: topbar1;}
 aside { grid-area: ads;}
 article { grid-area: content;}
 nav { grid-area: sidebar;}
 footer { grid-area: footer;}
+
+input{
+    display: block;
+}
+button{
+    background-color: rgb(48, 43, 43);
+    color: white;
+    padding: 4px 9px;
+}
