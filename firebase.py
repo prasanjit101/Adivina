@@ -43,9 +43,9 @@ def generate_code():
         join_code = code()
         room = request.form['start']
         admin = request.form['end']
-        # start = request.form['start']
-        # end = request.form['end']
-        val = assign_codes_to_roll_no(1, 15)
+        start = request.form['start']
+        end = request.form['end']
+        val = assign_codes_to_roll_no(int(start), int(end))
         if test_strings(room, admin, val):
             return render_template('index.html', t="Empty Strings")
         db.child('rooms').child(join_code).set({'room': room, 'admin': admin})
