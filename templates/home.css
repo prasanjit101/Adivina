@@ -19,8 +19,20 @@ main{
     justify-items:center;
     /* to justify items and center them*/
 }
-.nav{grid-area: topbar;}
+header{grid-area: topbar;}
 aside { grid-area: ads;}
 article { grid-area: content;}
 nav { grid-area: sidebar;}
 footer { grid-area: footer;}
+
+form button{
+    color: rgb(255, 255, 255); padding: 7px 12px 8px 13px; background-color: rgb(61, 67, 66);
+}
+
+form input{
+    padding: 6px 7px 6px 7px;
+}
+
+.shadow{
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 5px 2px;
+}
