@@ -52,26 +52,29 @@ def generate_code():
         db.child('rooms').child(join).set({'room': room, 'name': name})
         db.child('rooms').child(join).child("students").set(val)
         return render_template('home.html', info="Room Created", code=join, name=name, room=room)
+    return render_template('home.html', info="Error")
 
-@app.route('/admin/join/', methods=['POST'])
+@app.route('/admin/join', methods=['POST'])
 def admin_join():
     if request.method == 'POST':
         join = request.form.get('join')
         name = request.form.get('name')
         if test_strings(join, name):
-            return render_template('home.html', t="Empty Strings")
+            return render_template('home.html')
         val = db.child('rooms').shallow().get().val()
         for i in val:
             if i == join:
                 room = db.child('rooms').child(i).get().val()
-                return render_template('admin.html', room=room)
-        return render_template('home.html')
+                if room['name'] == name:
+                    return render_template('admin.html', room=room)         
+        return render_template('home.html', info="Unexpected Error")
 
 
 @app.route('/student/join', methods=['POST'])
 def student_join():
     if request.method == 'POST':
         join = request.form['join']
+        code = request.form['code']
         name = request.form['name']
         if test_strings(join, name):
             return render_template('home.html', t="Empty Strings")
@@ -79,9 +82,10 @@ def student_join():
         for i in val:
             if i == join:
                 if db.child('rooms').child(join).child('students').get().val() != None:
-                    student = db.child('rooms').child(join).child('students').get(name).val()
-                    if student == name:
-                        return render_template('home.html', t=student)
+                    student = db.child('rooms').child(join).child('students').get().val()
+                    print(student)
+                    # if student == name:
+                    #     return render_template('student.html', t=student)
     return render_template('home.html')
 
 
