@@ -18,14 +18,6 @@ config = {
 
 }
 
-questions = {
-    "0":"Give %s a funny nickname","1":"Now, What rumour would you like to start about %s ?","2":"Great! now who do you think %s will end up marrying",
-    "3":"What do you think %s should really work on ","4":"Why do you think %s is so depressed ...or happy for ?",
-    "5":"What is the emoji you have always wanted to give %s ?","6":"Hmmm, In your opinion what funny thing %s might have been in previous life ?",
-    "7":"If you have a coconut and %s with you. What will you do?","8":"What song you want to dance %s on","9":"Going good! And what song will you dance with %s on btw",
-    "10":"Okay..., now Which song you always wanted %s to sing?","11":"What according to you satisfies %s the most ?"
-}
-
 firebase = pyrebase.initialize_app(config)
 db = firebase.database()
 app = Flask(__name__)
@@ -53,7 +45,6 @@ def generate_code():
         admin = request.form['admin']
         # start = request.form['start']
         # end = request.form['end']
-        val = ""
         val = assign_codes_to_roll_no(1, 15)
         if test_strings(room, admin, val):
             return render_template('index.html', t="Empty Strings")
@@ -63,7 +54,7 @@ def generate_code():
     return render_template('index.html')
 
 
-@app.route('/join', methods=['POST'])
+@app.route('/student/join', methods=['POST'])
 def method_name():
     if request.method == 'POST':
         join = request.form['join']
@@ -73,11 +64,10 @@ def method_name():
         val = db.child('rooms').shallow().get().val()
         for i in val:
             if i == join:
-                length = 0
-                if db.child('rooms').child(join).child('students').shallow().get().val() != None:
-                    length = len(db.child('rooms').child(join).child('students').shallow().get().val())
-                db.child('rooms').child(join).child('students').child(length).set({length: name})
-        return render_template('index.html', t=join)
+                if db.child('rooms').child(join).child('students').get().val() != None:
+                    student = db.child('rooms').child(join).child('students').get(name).val()
+                    if student == name:
+                        return render_template('index.html', t=student)
     return render_template('index.html')
 
 
