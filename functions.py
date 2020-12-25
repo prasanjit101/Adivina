@@ -42,8 +42,8 @@ def assign_codes_to_roll_no(a, b):
 def student_dict(diction):
     dictionary={}
     diction=diction[:-1]
-    f=diction.split("\n")
+    f=diction.split(",")
     for j in f:
-        i=j.split("->")
+        i=j.split(":")
         dictionary[i[0]]=i[1]
     return dictionary
