@@ -37,12 +37,9 @@ def assign_codes_to_roll_no(a, b):
         val += ':'
         val += code()
         val += ','
-    return val
-
-def student_dict(diction):
     dictionary={}
-    diction=diction[:-1]
-    f=diction.split(",")
+    val=val[:-1]
+    f=val.split(",")
     for j in f:
         i=j.split(":")
         dictionary[i[0]]=i[1]
