@@ -83,8 +83,8 @@ def student_join():
 
 
 
-@app.route('/admin/<room>/add', methods=['POST'])
-def add_question(room):
+@app.route('/admin/<room>/<name>/add', methods=['POST'])
+def add_question(room, name):
     if request.method == 'POST':
         question = request.form.get('question')
         name = request.form.get('name')
@@ -97,8 +97,8 @@ def add_question(room):
         return render_template('admin.html', info="Uploaded", room=room, name=name)
 
 
-@app.route('/<room>/<student>/answer', methods=['POST'])
-def ans_question(room, student):
+@app.route('/<room>/<student>/<name>/answer', methods=['POST'])
+def ans_question(room, student, name):
     if request.method == 'POST':
         answer = request.form['answer']
         if test_strings(answer):
@@ -107,8 +107,8 @@ def ans_question(room, student):
             question_number = len(db.child('rooms').child(room).child('questions').shallow().get().val())
             question = db.child('rooms').child(room).child('questions').child(question_number - 1).get().val()['question']
             db.child('rooms').child(room).child('questions').child(question_number - 1).child('answers').child(student).set({'answer': answer})
-            return render_template('student.html', info="Uploaded", room=room, student=student, question=question)
-        return render_template('student.html', info="Unexpected Error")
+            return render_template('student.html', info="Uploaded", room=room, student=student, name=name, question=question)
+        return render_template('student.html', info="Unexpected Error",room=room, name=name, student=student)
         
 
 if __name__ == '__main__': 
