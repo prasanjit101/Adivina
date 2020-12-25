@@ -41,8 +41,8 @@ def get_questions():
 def generate_code():
     if request.method == 'POST':
         join_code = code()
-        room = request.form['start']
-        admin = request.form['end']
+        room = request.form['room']
+        admin = request.form['admin']
         start = request.form['start']
         end = request.form['end']
         val = assign_codes_to_roll_no(int(start), int(end))
@@ -50,12 +50,25 @@ def generate_code():
             return render_template('home.html', t="Empty Strings")
         db.child('rooms').child(join_code).set({'room': room, 'admin': admin})
         db.child('rooms').child(join_code).child("students").set(val)
-        return render_template('home.html', t=join_code)
+        return render_template('admin.html', code=join_code, admin=admin, room=room)
+    return render_template('home.html', t="Unexpected Error")
+
+@app.route('/admin/join', methods=['POST'])
+def admin_join():
+    if request.method == 'POST':
+        join = request.form['join']
+        name = request.form['name']
+        if test_strings(join, name):
+            return render_template('home.html', t="Empty Strings")
+        val = db.child('rooms').shallow().get().val()
+        for i in val:
+            if i == join:
+                room = db.child('rooms').child(i).get().val()
+                return render_template('admin.html', room=val)
     return render_template('home.html')
 
-
 @app.route('/student/join', methods=['POST'])
-def method_name():
+def student_join():
     if request.method == 'POST':
         join = request.form['join']
         name = request.form['name']
