@@ -53,8 +53,6 @@ PuLP==2.3.1
 py==1.10.0
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
-PyAudio @ file:///C:/Users/Lucky/pipwin/PyAudio-0.2.11-cp37-cp37m-win32.whl
-PyAutoGUI==0.9.52
 pycryptodome==3.9.9
 pycryptodomex==3.9.9
 pygame==1.9.6
@@ -93,7 +91,6 @@ shellescape==3.8.1
 six==1.15.0
 sklearn==0.0
 soupsieve==2.0.1
-SpeechRecognition==3.8.1
 sqlparse==0.3.1
 sseclient==0.0.27
 threadpoolctl==2.1.0
@@ -103,8 +100,6 @@ tzlocal==2.1
 urllib3==1.25.10
 virtualenv==20.0.28
 Werkzeug==1.0.1
-wikipedia==1.4.0
 windows-curses==2.1.0
 wrapt==1.12.1
-youtube-search==0.1.4
 zipp==3.1.0
