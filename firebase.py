@@ -36,13 +36,7 @@ def home():
     # val = timerFunction(x)
     # db.child("questions").set(questions)
     return render_template('index.html', t="Welcome to Adivina")
-
-
-@app.route('/codes', methods=['GET', 'POST'])
-def generate_codes():
-    if request.method == 'POST':
-        val = assign_codes_to_roll_no(1, 50)
-        return render_template('index.html', t=val)
+        
 
 
 @app.route('/get', methods=['GET', 'POST'])
@@ -59,9 +53,16 @@ def generate_code():
         join_code = code()
         room = request.form['room']
         admin = request.form['admin']
-        if test_strings(room, admin):
+        # start = request.form['start']
+        # end = request.form['end']
+        val = ""
+        val = assign_codes_to_roll_no(1, 10)
+        
+
+        if test_strings(room, admin, val):
             return render_template('index.html', t="Empty Strings")
         db.child('rooms').child(join_code).set({'room': room, 'admin': admin})
+        db.child('rooms').child(join_code).child("students").set(questions)
         return render_template('index.html', t=join_code)
     return render_template('index.html')
 

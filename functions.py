@@ -34,9 +34,9 @@ def assign_codes_to_roll_no(a, b):
     end = int(a)
     for i in range(a, b + 1):
         val += str(i)
-        val += ' -> '
+        val += ':'
         val += code()
-        val += '\n'
+        val += ','
     return val
 
 def student_dict(diction):
