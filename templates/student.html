@@ -8,32 +8,20 @@
   </head>
   <body>
     <main>
-      <div class="data">
-        <h4>Class code : </h4>
-        {{code}}
-        <h4>Room name : </h4>
-        {{room_name}}
-      </div>
-    <aside>
-      <p>Get Question<p>
-        <form action='/question/get' method="post">
-          <input type="text" name="room"></input>
-          <input type="text" name="index"></input>
-          <div><button>Get Question</button></div>
-        </form>
-    </aside>
-    <header>
-      <h4>Question</h4>
-    </header>
-    <article>
-      <p>Answer Question<p>
-        <form id="answer" action='/question/answer' method="post">
-          <input type="text" name="room"></input>
-          <input type="text" name="name"></input>
-          <input type="text" name="index"></input>
+      <aside>
+        <h4>{{info}}</h4>
+        <h4>Room code : {{room}}</h4>
+        <h4>Room name : {{name}}</h4>
+        <h4>Your Roll No : {{student}}</h4>
+
+        <header>
+          <h1>Your Latest Question<h1>
+          <h4>{{question}}</h4>
+        </header>
+        <form action="/{{room}}/{{student}}/answer" method="post">
           <input type="text" name="answer"></input>
-          <button>Answer Question</button>
+          <div><button>Submit Your Answer</button></div>
         </form>
-    </article>
+      </aside>
   </main>
   </body>

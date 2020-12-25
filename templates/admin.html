@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
   <head>
     <meta charset="UTF-8">
@@ -8,20 +7,19 @@
   </head>
   <body>
     <main>
-      <h1>{{room}}</h1>
-      <h2>{{admin}}</h2>
-      <h2>{{code}}</h2>
-      <header><p>Add Question</p></header>
       <article>
-        <form action="/question/add" method="post">
-          <input style="padding: 4px 5px; width:9.3cm" type="text" placeholder="Enter " name="room" >
-          <input style="padding: 4px 5px; width:9.3cm" type="text" placeholder="Enter " name="admin">
+        <form action="/admin/{{room}}/add" method="post">
+
+          <h1 name="room">{{room}}</h1>
+          <h2 name="name">{{name}}</h2>
+
+          <header><p>Add Question</p></header>
           <input style="padding: 4px 5px; width:9.3cm" type="text" placeholder="Enter " name="question">
           <button style="margin-top:0.5rem;margin-bottom: 1.5cm; color:#fff;padding: 4px 9px; background-color: rgb(61, 67, 66);">Add question</button>
         </form>
       </article>
       <footer>
-        {{t}}
+        {{info}}
       </footer>
     </main>  
   </body>
