@@ -1,4 +1,3 @@
 web: gunicorn app:app
-heroku ps:scale web=1
-gunicorn -b :5000 --access-logfile - --error-logfile - build:app
 web: gunicorn run:app
+heroku ps:scale web=1
