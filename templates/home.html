@@ -38,7 +38,10 @@
     <h1>{{code}}</h1>
     <br>
     <h5>Student </h5>
-    <form action="/student/join" method="post"><input name="join" placeholder="Enter your joining code" style="padding: 4px 5px;" type="text"><input placeholder="Enter your roll number" name="name" style="padding: 4px 5px;" type="number" min="1">
+    <form action="/student/join" method="post">
+    <input name="join" placeholder="Enter the Room code" style="padding: 4px 5px;" type="text">
+      <input name="code" placeholder="Enter your joining code" style="padding: 4px 5px;" type="text">
+      <input placeholder="Enter your roll number" name="name" style="padding: 4px 5px;" type="number" min="1">
       <button style="color:#fff;padding: 4px 9px; background-color: rgb(61, 67, 66);">Join room</button>
     <div>{{t}}</div>
     
