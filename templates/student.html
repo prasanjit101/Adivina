@@ -3,19 +3,28 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Adivina</title>
+    <title>Adivina- student panel</title>
     <link rel="stylesheet" href="student.css">
   </head>
   <body>
     <main>
+      <div class="data">
+        <h4>Class code : </h4>
+        {{code}}
+        <h4>Room name : </h4>
+        {{room_name}}
+      </div>
     <aside>
       <p>Get Question<p>
         <form action='/question/get' method="post">
           <input type="text" name="room"></input>
           <input type="text" name="index"></input>
-          <button>Get Question</button>
+          <div><button>Get Question</button></div>
         </form>
     </aside>
+    <header>
+      <h4>Question</h4>
+    </header>
     <article>
       <p>Answer Question<p>
         <form id="answer" action='/question/answer' method="post">

@@ -1,21 +1,21 @@
-html{color: rgb(48, 43, 43);height: 100vh;}
+html{color: rgb(48, 43, 43);height: 100vh;padding: 8px;}
 main{
     display: grid;
     grid-template-areas: 
-         "topbar topbar  topbar"
+         "topbar topbar1  topbar1"
          "ads    content sidebar"
          "footer footer  footer";
     grid-template-columns: 1fr 4fr 0fr;
     /*for making the columns 1 fraction ,3fractions and 1 fractions of the total width respectively*/
-    grid-template-rows: 50px auto 70px;
+    grid-template-rows: 130px auto 70px;
     /* for setting the height of the rows to 50px ,auto and 70px respectively */
     align-items:center;
     justify-items:center;
     /* to justify items and center them*/
 }
 
-
-header  { grid-area: topbar;}
+.data{grid-area: topbar;}
+header  { grid-area: topbar1;width:100%; height:auto;padding:8px;margin-bottom: 2rem; border:2px solid black;}
 aside { grid-area: ads;}
 article { grid-area: content;}
 nav { grid-area: sidebar;}
@@ -23,6 +23,7 @@ footer { grid-area: footer;}
 
 #answer input{
     display: block;
+    width:9cm;
 }
 button{
     background-color: rgb(48, 43, 43);
