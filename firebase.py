@@ -36,8 +36,6 @@ def home():
     # val = timerFunction(x)
     # db.child("questions").set(questions)
     return render_template('index.html', t="Welcome to Adivina")
-        
-
 
 @app.route('/get', methods=['GET', 'POST'])
 def get_questions():
