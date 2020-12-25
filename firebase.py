@@ -43,6 +43,7 @@ def home():
 def generate_codes():
     if request.method == 'POST':
         file = request.files['myfile']
+        filename=secure_filename(file.filename)
         val = assign_code(file)
         return send_file(val, as_attachment=True, attachment_filename="file.txt")
 

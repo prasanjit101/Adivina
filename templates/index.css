@@ -1,13 +1,14 @@
 main{
     display: grid;
     grid-template-areas: 
-         "a b c"
-         "d e f"
-         "g h i";
+         "topbar1 topbar  topbar3"
+         "ads    content sidebar"
+         "footer footer  footer";
     grid-template-columns: 1fr 3fr 1fr;
     /*for making the columns 1 fraction ,3fractions and 1 fractions of the total width respectively*/
     grid-template-rows: 50px auto 70px;
     /* for setting the height of the rows to 50px ,auto and 70px respectively */
+    gap:0 50px;
     /* 0px gap between the rows and 50px gap between the columns */
     align-items:center;
     justify-items:center;
@@ -15,8 +16,8 @@ main{
 }
 
 
-.nav{ grid-area: a;}
-.nav2{ grid-area: c;float: left;}
+.get{float:left; display: flex;}
+aside { grid-area: ads;}
 article { grid-area: content;}
 nav { grid-area: sidebar;}
 footer { grid-area: footer;}
