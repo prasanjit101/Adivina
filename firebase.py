@@ -68,7 +68,7 @@ def admin_join():
                 if room['name'] == name:
                     return render_template('admin.html', room=room)         
         return render_template('home.html', info="Unexpected Error")
-        
+
 
 @app.route('/student/join', methods=['POST'])
 def student_join():
@@ -83,7 +83,7 @@ def student_join():
             if i == join:
                 if db.child('rooms').child(join).child('students').get().val() != None:
                     student = db.child('rooms').child(join).child('students').get().val()
-                    if student[int(name)] == code:
+                    if len(student) > int(name) and student[int(name)] == code:
                         return render_template('home.html', t=student[int(name)])
     return render_template('home.html', info="Unexpected Error")
 
