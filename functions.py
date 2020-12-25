@@ -29,21 +29,9 @@ def test_strings(*argv):
 
 
 def assign_codes_to_roll_no(a, b):
-    val = ""
+    dictionary={}
     start = int(a)
     end = int(a)
     for i in range(a, b + 1):
-        val += str(i)
-        val += ':'
-        val += code()
-        val += ','
-    return val
-
-def student_dict(diction):
-    dictionary={}
-    diction=diction[:-1]
-    f=diction.split(",")
-    for j in f:
-        i=j.split(":")
-        dictionary[i[0]]=i[1]
+        dictionary[i]=code()
     return dictionary

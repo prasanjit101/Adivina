@@ -54,13 +54,11 @@ def generate_code():
         # start = request.form['start']
         # end = request.form['end']
         val = ""
-        val = assign_codes_to_roll_no(1, 10)
-        
-
+        val = assign_codes_to_roll_no(1, 15)
         if test_strings(room, admin, val):
             return render_template('index.html', t="Empty Strings")
         db.child('rooms').child(join_code).set({'room': room, 'admin': admin})
-        db.child('rooms').child(join_code).child("students").set(questions)
+        db.child('rooms').child(join_code).child("students").set(val)
         return render_template('index.html', t=join_code)
     return render_template('index.html')
 
