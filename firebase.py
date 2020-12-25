@@ -53,10 +53,10 @@ def generate_code():
         return render_template('admin.html', code=join_code, admin=admin, room=room)
     return render_template('home.html', t="Unexpected Error")
 
-@app.route('/admin/join', methods=['POST'])
-def admin_join():
+@app.route('/admin/join/<code>', methods=['POST'])
+def admin_join(code):
     if request.method == 'POST':
-        join = request.form['join']
+        join = code
         name = request.form['name']
         if test_strings(join, name):
             return render_template('home.html', t="Empty Strings")
@@ -64,8 +64,9 @@ def admin_join():
         for i in val:
             if i == join:
                 room = db.child('rooms').child(i).get().val()
-                return render_template('admin.html', room=val)
+                return render_template('admin.html', room=room)
     return render_template('home.html')
+
 
 @app.route('/student/join', methods=['POST'])
 def student_join():
