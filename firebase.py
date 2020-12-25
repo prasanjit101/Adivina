@@ -31,7 +31,6 @@ firebase = pyrebase.initialize_app(config)
 db = firebase.database()
 app = Flask(__name__)
 
-
 @app.route('/', methods=['GET'])
 def home():
     # x = 5
@@ -39,11 +38,14 @@ def home():
     # db.child("questions").set(questions)
     return render_template('index.html', t="Welcome to Adivina")
 
+
 @app.route('/codes', methods=['GET', 'POST'])
 def generate_codes():
     if request.method == 'POST':
         file = request.files['myfile']
-        val = assign_code(file)
+        filename = secure_filename(file.filename)
+        # print(filename)
+        val = assign_code(filename)
         return send_file(val, as_attachment=True, attachment_filename="file.txt")
 
 
@@ -84,7 +86,6 @@ def method_name():
                 db.child('rooms').child(join).child('students').child(length).set({length: name})
         return render_template('index.html', t=join)
     return render_template('index.html')
-
 
 
 @app.route('/question/add', methods=['POST'])
