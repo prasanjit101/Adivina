@@ -78,7 +78,6 @@ python-jwt==2.0.1
 pyttsx3==2.88
 PyTweening==1.0.3
 pytz==2020.1
-pywin32==228
 PyYAML==5.3.1
 Quandl==3.5.3
 requests==2.11.1
