@@ -15,8 +15,9 @@ main{
     /* to justify items and center them*/
 }
 
-
-.get{float:left; display: flex;}
+.nav{
+margin-bottom: 1cm;
+}
 aside { grid-area: ads;}
 article { grid-area: content;}
 nav { grid-area: sidebar;}

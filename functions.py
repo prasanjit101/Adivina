@@ -27,22 +27,23 @@ def test_strings(*argv):
             return True
     return False
 
-def assign_code(file):
-    file1 = open(file ,"r+")
-    #if names is the list of student names
-    roll=file1.readlines()
-    file1.close()
-    diction=roll
-    file2 = open(file,"w+")
-    for i in roll:
-        a=i[:-1]
-        file2.write(a+": "+code()+"\n")
-    file2.close()
-    return file
 
-def student_dict():
-    for i in diction:
-        temp=i[:-1]
-        i=temp.split(": ")
-        diction[i[1]]=i[0]
-    return diction
+def assign_codes_to_roll_no(a, b):
+    val = ""
+    start = int(a)
+    end = int(a)
+    for i in range(a, b + 1):
+        val += str(i)
+        val += ' -> '
+        val += code()
+        val += '\n'
+    return val
+
+def student_dict(diction):
+    dictionary={}
+    diction=diction[:-1]
+    f=diction.split("\n")
+    for j in f:
+        i=j.split("->")
+        dictionary[i[0]]=i[1]
+    return dictionary
