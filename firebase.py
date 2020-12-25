@@ -2,6 +2,7 @@ from Pyrebase import pyrebase
 from flask import *
 from functions import code, timerFunction, test_strings, assign_codes_to_roll_no
 import random
+import requests
 import os
 
 
@@ -37,27 +38,26 @@ def get_questions():
     return render_template('home.html')
  
 
-@app.route('/generate', methods=['GET', 'POST'])
+@app.route('/admin', methods=['GET', 'POST'])
 def generate_code():
     if request.method == 'POST':
-        join_code = code()
-        room = request.form['room']
-        admin = request.form['admin']
-        start = request.form['start']
-        end = request.form['end']
+        join = code()
+        room = request.form.get('room')
+        name = request.form.get('name')
+        start = request.form.get('start')
+        end = request.form.get('end')
         val = assign_codes_to_roll_no(int(start), int(end))
-        if test_strings(room, admin, val):
+        if test_strings(room, name, val):
             return render_template('home.html', t="Empty Strings")
-        db.child('rooms').child(join_code).set({'room': room, 'admin': admin})
-        db.child('rooms').child(join_code).child("students").set(val)
-        return render_template('admin.html', code=join_code, admin=admin, room=room)
-    return render_template('home.html', t="Unexpected Error")
+        db.child('rooms').child(join).set({'room': room, 'name': name})
+        db.child('rooms').child(join).child("students").set(val)
+        return render_template('home.html', info="Room Created", code=join, name=name, room=room)
 
-@app.route('/admin/join/<code>', methods=['POST'])
-def admin_join(code):
+@app.route('/admin/join/', methods=['POST'])
+def admin_join():
     if request.method == 'POST':
-        join = code
-        name = request.form['name']
+        join = request.form.get('join')
+        name = request.form.get('name')
         if test_strings(join, name):
             return render_template('home.html', t="Empty Strings")
         val = db.child('rooms').shallow().get().val()
@@ -65,7 +65,7 @@ def admin_join(code):
             if i == join:
                 room = db.child('rooms').child(i).get().val()
                 return render_template('admin.html', room=room)
-    return render_template('home.html')
+        return render_template('home.html')
 
 
 @app.route('/student/join', methods=['POST'])
