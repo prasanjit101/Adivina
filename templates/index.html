@@ -16,25 +16,22 @@
         
        <div class="nav2">
         <form action="/generate" method="post">
-          <input placeholder="Enter room code" type="text" name="room" style="padding: 4px 5px;">
-          <input placeholder="" type="text" name="admin" style="padding: 4px 5px;">
+          <input placeholder="Enter room name" type="text" name="room" style="padding: 4px 5px;">
+          <input placeholder="Enter your name" type="text" name="admin" style="padding: 4px 5px;">
           <button style="color:#fff;padding: 4px 9px; background-color: rgb(61, 67, 66);">Create Room</button>
       </form>
        </div>
     <br>
-
-    <form action="/codes" method="post" enctype="multipart/form-data" style=" left: 0px; top: 49px;">
-      <input style="margin-bottom: 1rem;"margin-top: 1rem; type="file" name="myfile">
-      <input type="submit" name="submit">
+      <form action="/join"><input name="join" placeholder="Enter your joining code" style="padding: 4px 5px;" type="text"><input placeholder="Enter your name" name="name" style="padding: 4px 5px;" type="text">
+      <button style="color:#fff;padding: 4px 9px; background-color: rgb(61, 67, 66);">Join room</button>
     </form>
-  
-      </div>
-      <h5>Get students code :</h5>
-      <form action="" method="">
-        <input type="file" placeholder="upload the file to get the code" name="file" id=""><button style="color:#fff;padding: 4px 9px; background-color: rgb(61, 67, 66);">upload</button>
-      </form>
     <br>
-    {{t}}
+    <h5>Student </h5>
+    <form action="/join"><input name="join" placeholder="Enter your joining code" style="padding: 4px 5px;" type="text"><input placeholder="Enter your roll number" name="name" style="padding: 4px 5px;" type="text">
+      <button style="color:#fff;padding: 4px 9px; background-color: rgb(61, 67, 66);">Join room</button>
+    <div>{{t}}</div>
+    
+    
     <script src="scripts.js"></script>
   </body>
 </html>
