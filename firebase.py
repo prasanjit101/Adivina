@@ -41,8 +41,8 @@ def get_questions():
 def generate_code():
     if request.method == 'POST':
         join_code = code()
-        room = request.form['room']
-        admin = request.form['admin']
+        room = request.form['start']
+        admin = request.form['end']
         # start = request.form['start']
         # end = request.form['end']
         val = assign_codes_to_roll_no(1, 15)

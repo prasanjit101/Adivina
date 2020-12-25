@@ -21,10 +21,21 @@
           <button style="color:#fff;padding: 4px 9px; background-color: rgb(61, 67, 66);">Create Room</button>
       </form>
        </div>
+
+       
     <br>
       <form action="/admin/join" method="post"><input name="join" placeholder="Enter your joining code" style="padding: 4px 5px;" type="text"><input placeholder="Enter your name" name="name" style="padding: 4px 5px;" type="text">
       <button style="color:#fff;padding: 4px 9px; background-color: rgb(61, 67, 66);">Join room</button>
     </form>
+    <br>
+    <div class="nav2">
+      <h5>Get code :</h5>
+     <form action="/generate" method="post">
+       <input placeholder="Enter the starting roll number" type="number" min="1" name="start" style="padding: 4px 5px;">
+       <input placeholder="Enter the ending roll number" type="number" max="100" name="end" style="padding: 4px 5px;">
+       <button style="color:#fff;padding: 4px 9px; background-color: rgb(61, 67, 66);">Create Room</button>
+   </form>
+    </div>
     <br>
     <h5>Student </h5>
     <form action="/student/join" method="post"><input name="join" placeholder="Enter your joining code" style="padding: 4px 5px;" type="text"><input placeholder="Enter your roll number" name="name" style="padding: 4px 5px;" type="number" min="1">

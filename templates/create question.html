@@ -3,7 +3,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Adivina</title>
+    <title>Adivina-ADMIN</title>
     <link rel="stylesheet" href="create.css">
   </head>
   <body>
@@ -11,12 +11,14 @@
       <header><p>Add Question</p></header>
       <article>
         <form action="/question/add" method="post">
-          <input type="text" name="room" >
-          <input type="text" name="admin">
-          <input type="text" name="question">
-          <button>Add Question</button>
+          <input style="padding: 4px 5px; width:9.3cm" type="text" placeholder="Enter " name="room" >
+          <input style="padding: 4px 5px; width:9.3cm" type="text" placeholder="Enter " name="admin">
+          <input style="padding: 4px 5px; width:9.3cm" type="text" placeholder="Enter " name="question">
+          <button style="margin-top:0.5rem;margin-bottom: 1.5cm; color:#fff;padding: 4px 9px; background-color: rgb(61, 67, 66);">Add question</button>
         </form>
       </article>
-      
+      <footer>
+        {{t}}
+      </footer>
     </main>  
   </body>
