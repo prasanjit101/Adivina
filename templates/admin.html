@@ -3,32 +3,30 @@
   <head>
     <meta charset="UTF-8">
     <title>Adivina-ADMIN</title>
-    <link rel="stylesheet" href="../static/admin.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
   </head>
   <body>
     <main>
       <header>
-        {{info}}
+        <h1>{{info}}</h1>
       </header>
       <aside>
         {% for para in roll_call %}
           <p>{{para}} {{roll_call[para]}}</p>
         {% endfor %}
-
       </aside>
       <article>
         <form action="/admin/{{room}}/{{name}}/add" method="post">
 
           <div class="h3">
-          <h4 name="room">{{room}}</h4>
-          <h4 name="name">{{name}}</h4>
-          <h4 name="question">{{question}}</h4>
-          <h4 name="answers">{{answers}}<h4>
+            <h2 name="name">{{name}}</h2>
+            <h3 name="room">{{room}}</h3>
+            <h4 name="question">Current Question: {{question}}</h4>
           </div>
           <div class="">
-            <h4><p>Add Question</p></h4>
-          <textarea name="question" placeholder="Type your question "  id="" rows="6"></textarea>
-          <button style=" color:#fff;background-color: rgb(61, 67, 66);">post question</button>
+            <h4><p>Next Question</p></h4>
+            <textarea name="question" placeholder="Enter Your Next Question "  id="" rows="6"></textarea>
+            <button style=" color:#fff;background-color: rgb(61, 67, 66);">Post Question</button>
           </div>
         </form>
       </article>

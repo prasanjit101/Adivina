@@ -86,9 +86,17 @@ def student_join():
                             question_number = len(db.child('rooms').child(room).child('questions').shallow().get().val())
                             question = db.child('rooms').child(room).child('questions').child(question_number - 1).get().val()['question']
                         room_name = db.child('rooms').child(room).get().val()['name']
-                        return render_template('student.html', name=room_name, room=room, student=name, question=question)
+                        return render_template('student.html', name=room_name, room=room, student=name, question=question, code=code)
     return render_template('home.html', info="Unexpected Error")
 
+@app.route('/<room>/<student>/<name>', methods=["POST"])
+def get_student(room, student, name):
+    question = "No question yet"
+    if db.child('rooms').child(room).child('questions').shallow().get().val() != None:
+        question_number = len(db.child('rooms').child(room).child('questions').shallow().get().val())
+        question = db.child('rooms').child(room).child('questions').child(question_number - 1).get().val()['question']
+        return render_template('student.html', info="UPLOADED", room=room, student=student, name=name, question=question)
+    return render_template('student.html', info="Unexpected Error",room=room, name=name, student=student, question=question)
 
 
 @app.route('/admin/<room>/<name>/add', methods=['POST'])
@@ -125,8 +133,8 @@ def ans_question(room, student, name):
             question_number = len(db.child('rooms').child(room).child('questions').shallow().get().val())
             question = db.child('rooms').child(room).child('questions').child(question_number - 1).get().val()['question']
             db.child('rooms').child(room).child('questions').child(question_number - 1).child('answers').child(student + "->").set({'answer': answer})
-            return render_template('student.html', info="UPLOADED", room=room, student=student, name=name, question=question)
-        return render_template('student.html', info="Unexpected Error",room=room, name=name, student=student, question=question)
+            return render_template('student.html', info="UPLOADED", room=room, student=student, name=name, question=question, answer=answer)
+        return render_template('student.html', info="Unexpected Error",room=room, name=name, student=student, question=question, answer=answer)
         
 
 if __name__ == '__main__': 
