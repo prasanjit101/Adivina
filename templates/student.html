@@ -4,26 +4,33 @@
   <head>
     <meta charset="UTF-8">
     <title>Adivina- student panel</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='student.css')}}">
+    <link rel="stylesheet" href="../static/student.css">
 
   </head>
   <body>
     <main>
-      <article>
+      <aside>
         <h4>{{info}}</h4>
         <h4>Room code : {{room}}</h4>
         <h4>Room name : {{name}}</h4>
         <h4>Your Roll No : {{student}}</h4>
+      </aside>
+      <header>
+        <h1>Your Latest Question: <h1>
+        <div><p>
+          {{question}}
+        </p></div>
+      </header>
+      <article>
+        
         <form action="/{{room}}/{{student}}/{{name}}" method="post">
             <button>UPDATE</button>
         </form>
 
-        <header>
-          <h1>Your Latest Question: {{question}}<h1>
-          <h4>Your Latest Answer: {{answer}}</h4>
-        </header>
+        
+        <h4>Your Latest Answer: {{answer}}</h4>
         <form action="/{{room}}/{{student}}/{{name}}/answer" method="post">
-          <input type="text" name="answer"></input>
+          <textarea type="text" name="answer"></textarea>
           <div><button>Submit Your Answer</button></div>
         </form>
       </article>

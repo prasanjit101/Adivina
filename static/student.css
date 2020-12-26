@@ -8,7 +8,7 @@ html{
 main{
     display: grid;
     grid-template-areas: 
-         "topbar topbar1  topbar1"
+         "topbar topbar  topbar"
          "ads    content sidebar"
          "footer footer  footer";
     grid-template-columns: 1fr 4fr 0fr;
@@ -17,11 +17,11 @@ main{
     /* for setting the height of the rows to 50px ,auto and 70px respectively */
     align-items:center;
     justify-items:center;
+    width:100%;
     /* to justify items and center them*/
 }
 
-.data{grid-area: topbar;}
-header  { grid-area: topbar1;width:100%; height:auto;padding:8px;margin-bottom: 2rem; border:2px solid black;}
+header  { grid-area: topbar;width:100%; height:auto;padding:8px;margin-bottom: 2rem; border:2px solid black;}
 aside { grid-area: ads;}
 article { grid-area: content;}
 nav { grid-area: sidebar;}
@@ -35,4 +35,9 @@ button{
     background-color: rgb(48, 43, 43);
     color: white;
     padding: 4px 9px;
+}
+textarea{
+    resize:none;
+    width: 10cm;
+    height: 3cm;
 }
