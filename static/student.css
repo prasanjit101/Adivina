@@ -13,7 +13,7 @@ main{
          "footer footer  footer";
     grid-template-columns: 1fr 4fr 0fr;
     /*for making the columns 1 fraction ,3fractions and 1 fractions of the total width respectively*/
-    grid-template-rows: 130px auto 70px;
+    grid-template-rows: 10px auto 70px;
     /* for setting the height of the rows to 50px ,auto and 70px respectively */
     align-items:center;
     justify-items:center;
@@ -21,7 +21,7 @@ main{
     /* to justify items and center them*/
 }
 
-header  { grid-area: topbar;width:100%; height:auto;padding:8px;margin-bottom: 2rem; border:2px solid black;}
+header  { grid-area: topbar;width:95%; height:auto;padding:8px;margin-bottom: 2rem; border:2px solid black;}
 aside { grid-area: ads;}
 article { grid-area: content;}
 nav { grid-area: sidebar;}
