@@ -1,2 +1,1 @@
-web: gunicorn firebase:app
-heroku ps:scale web=1
+web:gunicorn firebase:app
