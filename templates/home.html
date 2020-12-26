@@ -4,22 +4,22 @@
   <head>
     <meta charset="UTF-8">
     <title>Adivina</title>
+    <--href="{{ url_for('static', filename='stylesheets/styles.css') }}"-->
     <link rel="stylesheet" href="../static/home.css">
   </head>
   <body class="mt" style=" color: rgb(0, 0, 0); background-color: rgb(247, 248, 247);">
-
+    <h2 class="brand">Adivina</h2>
       <main>
       <div class="detail">
         <h3>{{info}}</h3>
         <h3>{{name}}</h3>
         <h3>{{admin}}</h3>
         <h3>{{room}}</h3>
-
       </div>
       <br>
-
         <article class="shadow">
-          <h3>Teacher panel</h3>
+          <h3>Teacher panel (For Teachers)</h3>
+          <p>create your room :</p>
           <form action="/home" method="post">
             <input placeholder="Enter room name" type="text" name="name">
             <input placeholder="Enter your name" type="text" name="admin">
@@ -27,19 +27,19 @@
             <input title="All users upto this roll number will be able to join this room" placeholder="Enter the ending roll number" type="number" max="100" name="end">    
             <button style="color:#fff; background-color: rgb(61, 67, 66);">Create Room</button>
           </form>
+          <p>Enter password and name to join your room :</p>
+          <form action="/admin" method="post">
+            <input name="room" placeholder="Enter your password" type="text">
+            <input placeholder="Enter your name" name="admin" type="text">
+            <button style="color:#fff; background-color: rgb(61, 67, 66);">Join room</button>
+          </form>
         </article>
        
       <br>
-      <header >
-        <form action="/admin" method="post">
-          <input name="room" placeholder="Enter your password" type="text">
-          <input placeholder="Enter your name" name="admin" type="text">
-          <button style="color:#fff; background-color: rgb(61, 67, 66);">Join room</button>
-        </form>
-      </header>
       <br>
       <footer class="shadow">
-        <h3>Student panel</h3>
+        <h3>Student panel (for students):</h3>
+        <p>Join your exam room</p>
       <form action="/student" method="post">
         <input name="room" placeholder="Enter the Room code" type="text">
         <input name="code" placeholder="Enter your password" type="text">

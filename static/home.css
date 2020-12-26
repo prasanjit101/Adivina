@@ -8,21 +8,22 @@ html{
 main{
     display: grid;
     grid-template-areas: 
-         "topbar topbar  topbar"
+         "topbar1 topbar  topbar"
          "ads    content sidebar"
          "footer footer  footer";
     grid-template-columns: 1fr 3fr 1fr;
     /*for making the columns 1 fraction ,3fractions and 1 fractions of the total width respectively*/
-    grid-template-rows: 100px auto auto;
+    grid-template-rows: 80px auto auto;
     /* for setting the height of the rows to 50px ,auto and 70px respectively */
     /* 0px gap between the rows and 50px gap between the columns */
 
     justify-items:center;
     justify-content: space-around;
+    padding:0 0 0.5cm 0;
     /* to justify items and center them*/
 }
 .detail{grid-area: ads;}
-header{grid-area: topbar;margin-left: auto;margin-top: 1rem;}
+.brand{grid-area: topbar1;text-align: center;color: rgb(44, 29, 126);}
 aside { grid-area: ads;}
 article { grid-area: content;}
 nav { grid-area: sidebar;}

@@ -24,6 +24,7 @@ nav { grid-area: sidebar;}
 footer { grid-area: footer;}
 textarea{
     width: 100%;
+    resize: none;
 }
 
 form button{
