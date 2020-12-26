@@ -23,8 +23,8 @@
           <form action="/home" method="post">
             <input placeholder="Enter room name" type="text" name="name">
             <input placeholder="Enter your name" type="text" name="admin">
-            <input placeholder="Enter the starting roll number" type="number" min="1" name="start">
-            <input placeholder="Enter the ending roll number" type="number" max="100" name="end">    
+            <input title="All starting from this roll number will be able to join this room" placeholder="Enter the starting roll number" type="number" min="1" name="start">
+            <input title="All users upto this roll number will be able to join this room" placeholder="Enter the ending roll number" type="number" max="100" name="end">    
             <button style="color:#fff; background-color: rgb(61, 67, 66);">Create Room</button>
           </form>
         </article>
@@ -32,7 +32,7 @@
       <br>
       <header >
         <form action="/admin" method="post">
-          <input name="room" placeholder="Enter your joining code" type="text">
+          <input name="room" placeholder="Enter your password" type="text">
           <input placeholder="Enter your name" name="admin" type="text">
           <button style="color:#fff; background-color: rgb(61, 67, 66);">Join room</button>
         </form>
@@ -42,7 +42,7 @@
         <h3>Student panel</h3>
       <form action="/student" method="post">
         <input name="room" placeholder="Enter the Room code" type="text">
-        <input name="code" placeholder="Enter your joining code" type="text">
+        <input name="code" placeholder="Enter your password" type="text">
         <input placeholder="Enter your roll number" name="name" type="number" min="1">
         <button style="color:#fff; background-color: rgb(61, 67, 66);">Join room</button>
       </form>
