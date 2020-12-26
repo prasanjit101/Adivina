@@ -22,9 +22,12 @@ config = {
 firebase = pyrebase.initialize_app(config)
 db = firebase.database()
 app = Flask(__name__)
- 
 
 @app.route('/', methods=['GET', 'POST'])
+def home():
+    return render_template('home.html', info="Welcome")
+
+@app.route('/home', methods=['GET', 'POST'])
 def generate_code():
     if request.method == 'POST':
 
@@ -40,9 +43,9 @@ def generate_code():
             return render_template('home.html', t="Empty Strings")
 
         db.child('rooms').child(room).set({'admin': admin, 'name': name})
-        db.child('rooms').child(room).child('students').set(students)
+        db.child('rooms').child(room).child('students').set([students])
 
-        return render_template('home.html', info="Room Created", room=room, admin=admin, name=name)
+        return render_template('home.html', info="Room Created", room=room, admin=admin, name=name, roll_call=students)
     return render_template('home.html', info="Welcome to Adivina")
 
 
@@ -58,7 +61,8 @@ def admin_join():
             if i == room:
                 details = db.child('rooms').child(room).get().val()
                 if details['admin'] == admin:
-                    return render_template('admin.html', name=details['name'], room=room)         
+                    roll_call = db.child('rooms').child(room).child('students').get().val()
+                    return render_template('admin.html', name=details['name'], room=room, roll_call=roll_call)         
         return render_template('home.html', info="Unexpected Error")
 
 
@@ -87,14 +91,20 @@ def student_join():
 def add_question(room, name):
     if request.method == 'POST':
         question = request.form.get('question')
-        name = request.form.get('name')
+        current_question = ""
+        current_answer = ""
         if test_strings(room, question):
             return render_template('admin.html', info="Empty Strings")
         question_number = 0
         if db.child('rooms').child(room).child('questions').shallow().get().val() != None:
             question_number = len(db.child('rooms').child(room).child('questions').shallow().get().val())
+            complete = db.child('rooms').child(room).child('questions').get().val()[question_number - 1]
+            current_question = complete['question']
+            if 'answers' in current_answer:
+                current_answer = complete['answers']
+            
         db.child('rooms').child(room).child('questions').child(question_number).set({'question': question})
-        return render_template('admin.html', info="Uploaded", room=room, name=name)
+        return render_template('admin.html', info="Uploaded", room=room, name=name, question=current_question, answers=current_answer)
 
 
 @app.route('/<room>/<student>/<name>/answer', methods=['POST'])

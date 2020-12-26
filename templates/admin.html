@@ -10,14 +10,21 @@
       <header>
         {{info}}
       </header>
+      <aside>
+        {% for i in roll_call %}
+          <h4>{{i}} -> {{roll_call[i]}}<br></h4>
+      {% endfor %}
+
+      </aside>
       <article>
         <form action="/admin/{{room}}/{{name}}/add" method="post">
 
-          <div class="h3 ">
+          <div class="h3">
           <h4 name="room">{{room}}</h4>
           <h4 name="name">{{name}}</h4>
+          <h4 name="question">{{question}}</h4>
+          <h4 name="answers">{{answers}}<h4>
           </div>
-
           <div class="">
             <h4><p>Add Question</p></h4>
           <textarea name="question" placeholder="Type your question "  id="" rows="6"></textarea>
