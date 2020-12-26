@@ -1,4 +1,10 @@
-html{color: rgb(48, 43, 43);height: 100vh;}
+html{
+    height: 100vh;
+    margin: 0px;width: 0px;
+    color: rgb(34, 29, 29);
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
 main{
     display: grid;
     grid-template-areas: 
@@ -16,11 +22,22 @@ article { grid-area: content;}
 nav { grid-area: sidebar;}
 footer { grid-area: footer;}
 
-input{
-    display: block;
+
+form button{
+    color: rgb(255, 255, 255); padding: 7px 12px 8px 13px; background-color: rgb(61, 67, 66);
 }
-button{
-    background-color: rgb(48, 43, 43);
-    color: white;
-    padding: 4px 9px;
+
+article input{
+    padding: 6px 7px 6px 7px; width:9cm; display: block; margin-bottom: 5px;
+}
+form input{
+    padding: 6px 7px 6px 7px; 
+}
+footer input{
+    padding: 6px 7px 6px 7px; width:9cm; display: block; margin-bottom: 5px;
+}
+
+.shadow{
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 5px 2px;
+    padding: 1.4rem 9rem;
 }

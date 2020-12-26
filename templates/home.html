@@ -9,36 +9,43 @@
   <body class="mt" style=" color: rgb(0, 0, 0); background-color: rgb(247, 248, 247);">
 
       <main>
-        <h1>{{info}}</h1>
-      <h1>{{name}}</h1>
-      <h1>{{admin}}</h1>
-      <h1>{{room}}</h1>
+      <div class="detail">
+        <h3>{{info}}</h3>
+      <h3>{{name}}</h3>
+      <h3>{{admin}}</h3>
+      <h3>{{room}}</h3>
+      </div>
       <br>
 
-       <div class="shadow">
-        <form action="/" method="post">
-          <input placeholder="Enter room name" type="text" name="name">
-          <input placeholder="Enter your name" type="text" name="admin">
-          <input placeholder="Enter the starting roll number" type="number" min="1" name="start">
-          <input placeholder="Enter the ending roll number" type="number" max="100" name="end">    
-          <button style="color:#fff; background-color: rgb(61, 67, 66);">Create Room</button>
-        </form>
-       </div>
+        <article class="shadow">
+          <h3>Teacher panel</h3>
+          <form action="/" method="post">
+            <input placeholder="Enter room name" type="text" name="name">
+            <input placeholder="Enter your name" type="text" name="admin">
+            <input placeholder="Enter the starting roll number" type="number" min="1" name="start">
+            <input placeholder="Enter the ending roll number" type="number" max="100" name="end">    
+            <button style="color:#fff; background-color: rgb(61, 67, 66);">Create Room</button>
+          </form>
+        </article>
        
       <br>
-      <form action="/admin" method="post">
-        <input name="room" placeholder="Enter your joining code" type="text">
-        <input placeholder="Enter your name" name="admin" type="text">
-        <button style="color:#fff; background-color: rgb(61, 67, 66);">Join room</button>
-      </form>
+      <header >
+        <form action="/admin" method="post">
+          <input name="room" placeholder="Enter your joining code" type="text">
+          <input placeholder="Enter your name" name="admin" type="text">
+          <button style="color:#fff; background-color: rgb(61, 67, 66);">Join room</button>
+        </form>
+      </header>
       <br>
-      <h5>Student </h5>
+      <footer class="shadow">
+        <h3>Student panel</h3>
       <form action="/student" method="post">
         <input name="room" placeholder="Enter the Room code" type="text">
         <input name="code" placeholder="Enter your joining code" type="text">
         <input placeholder="Enter your roll number" name="name" type="number" min="1">
         <button style="color:#fff; background-color: rgb(61, 67, 66);">Join room</button>
       </form>
+      </footer>
       </main>
     
     <script src="scripts.js"></script>
