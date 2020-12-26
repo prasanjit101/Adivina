@@ -33,6 +33,6 @@ def assign_codes_to_roll_no(a, b):
     start = int(a)
     end = int(a)
     for i in range(a, b + 1):
-        dictionary[str(i)]=code()
+        dictionary[str(i) + "->"]=code()
     return dictionary
 

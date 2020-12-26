@@ -11,9 +11,9 @@
         {{info}}
       </header>
       <aside>
-        {% for i in roll_call %}
-          <h4>{{i}} -> {{roll_call[i]}}<br></h4>
-      {% endfor %}
+        {% for para in roll_call %}
+          <p>{{para}} {{roll_call[para]}}</p>
+        {% endfor %}
 
       </aside>
       <article>

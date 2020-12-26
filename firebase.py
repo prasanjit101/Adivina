@@ -36,16 +36,16 @@ def generate_code():
         admin = request.form.get('admin')
         start = request.form.get('start')
         end = request.form.get('end')
-
+        print(name, admin, start, end)
         students = assign_codes_to_roll_no(int(start), int(end))
 
         if test_strings(name, admin, start, end):
             return render_template('home.html', t="Empty Strings")
 
         db.child('rooms').child(room).set({'admin': admin, 'name': name})
-        db.child('rooms').child(room).child('students').set([students])
+        db.child('rooms').child(room).child('students').set(students)
 
-        return render_template('home.html', info="Room Created", room=room, admin=admin, name=name, roll_call=students)
+        return render_template('home.html', info="Room Created", room=room, admin=admin, name=name)
     return render_template('home.html', info="Welcome to Adivina")
 
 
@@ -72,6 +72,7 @@ def student_join():
         room = request.form.get('room')
         code = request.form.get('code')
         name = request.form.get('name')
+        question = ""
         if test_strings(room, name):
             return render_template('home.html', t="Empty Strings")
 
@@ -80,9 +81,12 @@ def student_join():
             if i == room:
                 if db.child('rooms').child(room).child('students').get().val() != None:
                     student = db.child('rooms').child(room).child('students').get().val()
-                    if len(student) > int(name) and student[int(name)] == code:
+                    if len(student) > int(name) and student[str(name) + "->"] == code:
+                        if db.child('rooms').child(room).child('questions').shallow().get().val() != None:
+                            question_number = len(db.child('rooms').child(room).child('questions').shallow().get().val())
+                            question = db.child('rooms').child(room).child('questions').child(question_number - 1).get().val()['question']
                         room_name = db.child('rooms').child(room).get().val()['name']
-                        return render_template('student.html', name=room_name, room=room, student=name)
+                        return render_template('student.html', name=room_name, room=room, student=name, question=question)
     return render_template('home.html', info="Unexpected Error")
 
 
@@ -91,34 +95,38 @@ def student_join():
 def add_question(room, name):
     if request.method == 'POST':
         question = request.form.get('question')
-        current_question = ""
-        current_answer = ""
+        current_question = question
+        uploaded = "NOT UPLOADED"
         if test_strings(room, question):
             return render_template('admin.html', info="Empty Strings")
+        roll_call = db.child('rooms').child(room).child('students').get().val()
         question_number = 0
         if db.child('rooms').child(room).child('questions').shallow().get().val() != None:
             question_number = len(db.child('rooms').child(room).child('questions').shallow().get().val())
-            complete = db.child('rooms').child(room).child('questions').get().val()[question_number - 1]
-            current_question = complete['question']
-            if 'answers' in current_answer:
-                current_answer = complete['answers']
-            
-        db.child('rooms').child(room).child('questions').child(question_number).set({'question': question})
-        return render_template('admin.html', info="Uploaded", room=room, name=name, question=current_question, answers=current_answer)
+            if db.child('rooms').child(room).child('questions').get().val()[question_number - 1]['question'] != current_question:
+                db.child('rooms').child(room).child('questions').child(question_number).set({'question': question})
+                uploaded = "UPLOADED"
+
+        else:
+            db.child('rooms').child(room).child('questions').child(question_number).set({'question': question})
+            complete = db.child('rooms').child(room).child('questions').get().val()[question_number]
+            uploaded = "UPLOADED"
+        return render_template('admin.html', info=uploaded, room=room, name=name, question=current_question, roll_call=roll_call)
 
 
 @app.route('/<room>/<student>/<name>/answer', methods=['POST'])
 def ans_question(room, student, name):
     if request.method == 'POST':
         answer = request.form['answer']
+        question = "No question yet"
         if test_strings(answer):
             return render_template('student.html', t="Empty Strings")
         if db.child('rooms').child(room).child('questions').shallow().get().val() != None:
             question_number = len(db.child('rooms').child(room).child('questions').shallow().get().val())
             question = db.child('rooms').child(room).child('questions').child(question_number - 1).get().val()['question']
-            db.child('rooms').child(room).child('questions').child(question_number - 1).child('answers').child(student).set({'answer': answer})
-            return render_template('student.html', info="Uploaded", room=room, student=student, name=name, question=question)
-        return render_template('student.html', info="Unexpected Error",room=room, name=name, student=student)
+            db.child('rooms').child(room).child('questions').child(question_number - 1).child('answers').child(student + "->").set({'answer': answer})
+            return render_template('student.html', info="UPLOADED", room=room, student=student, name=name, question=question)
+        return render_template('student.html', info="Unexpected Error",room=room, name=name, student=student, question=question)
         
 
 if __name__ == '__main__': 
