@@ -8,7 +8,7 @@ html{
 main{
     display: grid;
     grid-template-areas: 
-    "topbar topbar1  topbar1"
+    "topbar topbar  topbar"
     "ads    content sidebar"
     "footer footer  footer";
 
@@ -16,12 +16,14 @@ main{
     /* for making the columns 1 fraction ,3fractions and 1 fractions of the total width respectively */
     grid-template-rows: 50px auto 70px;
 }
-header  { grid-area: topbar1;}
+header  { grid-area: topbar;color:green;text-align: center;}
 aside { grid-area: ads;}
 article { grid-area: content;}
 nav { grid-area: sidebar;}
 footer { grid-area: footer;}
-
+textarea{
+    width: 100%;
+}
 
 form button{
     color: rgb(255, 255, 255); padding: 7px 12px 8px 13px; background-color: rgb(61, 67, 66);
@@ -36,7 +38,9 @@ form input{
 footer input{
     padding: 6px 7px 6px 7px; width:9cm; display: block; margin-bottom: 5px;
 }
-
+.h3{
+    margin-bottom: 1.5cm;
+}
 .shadow{
     box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 5px 2px;
     padding: 1.4rem 9rem;

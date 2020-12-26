@@ -7,19 +7,23 @@
   </head>
   <body>
     <main>
+      <header>
+        {{info}}
+      </header>
       <article>
         <form action="/admin/{{room}}/{{name}}/add" method="post">
 
-          <h1 name="room">{{room}}</h1>
-          <h2 name="name">{{name}}</h2>
+          <div class="h3 ">
+          <h4 name="room">{{room}}</h4>
+          <h4 name="name">{{name}}</h4>
+          </div>
 
-          <header><p>Add Question</p></header>
-          <input style="padding: 4px 5px; width:9.3cm" type="text" placeholder="Enter " name="question">
-          <button style="margin-top:0.5rem;margin-bottom: 1.5cm; color:#fff;padding: 4px 9px; background-color: rgb(61, 67, 66);">Add question</button>
+          <div class="">
+            <h4><p>Add Question</p></h4>
+          <textarea name="question" placeholder="Type your question "  id="" rows="6"></textarea>
+          <button style=" color:#fff;background-color: rgb(61, 67, 66);">post question</button>
+          </div>
         </form>
       </article>
-      <footer>
-        {{info}}
-      </footer>
     </main>  
   </body>
