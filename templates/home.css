@@ -1,5 +1,4 @@
 html{
-    font: Arial;
     height: 100vh;
     margin: 0px;width: 0px;
     color: rgb(34, 29, 29);
@@ -7,7 +6,6 @@ html{
     font-family: Arial, Helvetica, sans-serif;
 }
 main{
-    font: Arial;
     display: grid;
     grid-template-areas: 
          "topbar topbar  topbar"
