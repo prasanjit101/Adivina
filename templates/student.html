@@ -5,24 +5,25 @@
     <meta charset="UTF-8">
     <title>Adivina- student panel</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='student.css') }}">
+    <link rel="stylesheet" href="../static/student.css">
 
   </head>
   <body>
-    <header>
-      <h1>Your Latest Question: <h1>
-      <div><p>
+    <header class="shadow xc">
+      <h3>Your Latest Question: <h3>
+      <p>
         {{question}}
-      </p></div>
+      </p>
     </header>
     <main>
-      <aside>
+      <aside class="">
         <h4>{{info}}</h4>
         <h4>Room code : {{room}}</h4>
         <h4>Room name : {{name}}</h4>
         <h4>Your Roll No : {{student}}</h4>
       </aside>
       
-      <article>
+      <article class="shadow">
         
         <form action="/{{room}}/{{student}}/{{name}}" method="post">
             <button>UPDATE</button>
