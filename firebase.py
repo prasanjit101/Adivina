@@ -23,10 +23,12 @@ firebase = pyrebase.initialize_app(config)
 db = firebase.database()
 app = Flask(__name__)
 
+# Home API --- Don't Do anything
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    return render_template('home.html', info="Welcome")
+    return render_template('home.html', info="Welcome To Adivina")
 
+# This api is called when a room is created
 @app.route('/home', methods=['GET', 'POST'])
 def generate_code():
     if request.method == 'POST':
@@ -48,7 +50,7 @@ def generate_code():
         return render_template('home.html', info="Room Created", room=room, admin=admin, name=name)
     return render_template('home.html', info="Welcome to Adivina")
 
-
+# This api is called when teacher try to log in to the application
 @app.route('/admin', methods=['POST'])
 def admin_join():
     if request.method == 'POST':
@@ -65,7 +67,7 @@ def admin_join():
                     return render_template('admin.html', name=details['name'], room=room, roll_call=roll_call)         
         return render_template('home.html', info="Unexpected Error")
 
-
+# This api is called when student try to login to the application
 @app.route('/student', methods=['POST'])
 def student_join():
     if request.method == 'POST':
@@ -89,6 +91,7 @@ def student_join():
                         return render_template('student.html', name=room_name, room=room, student=name, question=question, code=code)
     return render_template('home.html', info="Unexpected Error")
 
+# This api is called when student try to update the web page so to see new question
 @app.route('/<room>/<student>/<name>', methods=["POST"])
 def get_student(room, student, name):
     question = "No question yet"
@@ -99,6 +102,7 @@ def get_student(room, student, name):
     return render_template('student.html', info="Unexpected Error",room=room, name=name, student=student, question=question)
 
 
+# This api is called when teacher try to add a question
 @app.route('/admin/<room>/<name>/add', methods=['POST'])
 def add_question(room, name):
     if request.method == 'POST':
@@ -121,7 +125,7 @@ def add_question(room, name):
             uploaded = "UPLOADED"
         return render_template('admin.html', info=uploaded, room=room, name=name, question=current_question, roll_call=roll_call)
 
-
+# This api is called when student try to answer the question
 @app.route('/<room>/<student>/<name>/answer', methods=['POST'])
 def ans_question(room, student, name):
     if request.method == 'POST':
@@ -135,7 +139,16 @@ def ans_question(room, student, name):
             db.child('rooms').child(room).child('questions').child(question_number - 1).child('answers').child(student + "->").set({'answer': answer})
             return render_template('student.html', info="UPLOADED", room=room, student=student, name=name, question=question, answer=answer)
         return render_template('student.html', info="Unexpected Error",room=room, name=name, student=student, question=question, answer=answer)
-        
+
+# This api is called when teacher try to get the answers       
+@app.route('/admin/<room>/download', methods=['POST'])
+def download_answers(room):
+    if request.method == 'POST':
+        question = db.child('rooms').child(room).child('questions').get().val()
+        return Response(str(question),
+                       mimetype="text/plain",
+                       headers={"Content-Disposition":
+                                    "attachment;filename=test.txt"})
 
 if __name__ == '__main__': 
     app.run(debug=True)
