@@ -12,11 +12,16 @@
       <h1>{{name}}</h1>
       <h1>{{admin}}</h1>
       <h1>{{room}}</h1>
+
+      {% for val in roll_call %}
+          <h4>{{val}} -> {{roll_call[val]}}<br></h4>
+      {% endfor %}
+
       <br>
 
       <div class="get"> 
        <div class="nav2">
-        <form action="/" method="post">
+        <form action="/home" method="post">
           <input placeholder="Enter room name" type="text" name="name" style="padding: 4px 5px;">
           <input placeholder="Enter your name" type="text" name="admin" style="padding: 4px 5px;">
           <input placeholder="Enter the starting roll number" type="number" min="1" name="start" style="padding: 4px 5px;">

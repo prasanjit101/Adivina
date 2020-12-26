@@ -12,7 +12,13 @@
 
           <h1 name="room">{{room}}</h1>
           <h2 name="name">{{name}}</h2>
+          <h2 name="question">{{question}}</h2>
+          <h2 name="answers">{{answers}}<h2>
 
+          {% for val in roll_call %}
+              <h4>{{val}} -> {{roll_call[val]}}<br></h4>
+          {% endfor %}
+          
           <header><p>Add Question</p></header>
           <input style="padding: 4px 5px; width:9.3cm" type="text" placeholder="Enter " name="question">
           <button style="margin-top:0.5rem;margin-bottom: 1.5cm; color:#fff;padding: 4px 9px; background-color: rgb(61, 67, 66);">Add question</button>
